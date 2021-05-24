@@ -109,6 +109,7 @@ public class constants{
 
     public static final int RANGE_SEARCH_DATE = 1;
     public static final int RANGE_SEARCH_ID = 2;
+    public static final boolean SHOW_VALUE=false;
 
 
 }
