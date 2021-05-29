@@ -29,11 +29,20 @@ public class ChildNode extends TreeNode{
 
             String keyOfNode = keys.get(i);
             String valOfNode = nodeVal.get(i);
-
-            if(keyOfNode.toUpperCase().contains(key.toUpperCase()) || valOfNode.toUpperCase().contains(key.toUpperCase()))
+			//System.out.println(key);
+			//System.out.println(valOfNode);
+            if(keyOfNode.toUpperCase().contains(key.toUpperCase()))
             {
                 System.out.println("Value Found in B+ Tree"+"["+key+"] : "+ keyOfNode+" : "+ valOfNode);
             }
+			if(valOfNode.toUpperCase().contains(key.toUpperCase()))
+			{
+				System.out.println("Value Found in B+ Tree"+"["+key+"] : "+ keyOfNode+" : "+ valOfNode);
+			}
+			if(valOfNode.matches(key))
+			{
+				System.out.println("FOUND");
+			}
             i++;
         }
     }
@@ -83,19 +92,25 @@ public class ChildNode extends TreeNode{
 
                     String toSearch="";
 
+
+                   //System.out.println(valOfNode);
+//                    System.out.println(keyOfNode);
+//                    System.out.println("Print");
+
                     if(type==constants.RANGE_SEARCH_STD)
                     {
-                        toSearch = keyOfNode.substring(constants.DATE_OFFSET, constants.DATE_SIZE);
-
+                        //toSearch = keyOfNode.substring(constants.DATE_OFFSET, constants.DATE_SIZE);
+						toSearch = valOfNode.substring(0, constants.COUNTS_OFFSET-20);
+						//System.out.println(toSearch);
                     }
 
                     else if(type==constants.RANGE_SEARCH_ID)
                     {
-                        toSearch = keyOfNode.substring(constants.ID_OFFSET, constants.ID_SIZE);
-
+                       // toSearch = keyOfNode.substring(constants.ID_OFFSET, constants.ID_SIZE);
+						toSearch = valOfNode.substring(constants.ID_OFFSET, constants.ID_SIZE);
                     }
 
-
+					//System.out.println("HERE");
                     if(toSearch.compareTo(key1)>=0 && toSearch.compareTo(key2)<=0)
                     {
                         System.out.println("Result For Given Range"+"["+key1+"] : " + "----" + "["+key2+"] :-  " + keyOfNode + " : " + valOfNode );
@@ -135,7 +150,7 @@ public class ChildNode extends TreeNode{
                 //Already there
                 //Add a check for user output
                 //if(constants.DEBUG_MODE_INSERT)
-                System.out.println("Setting key and value at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
+                //System.out.println("Setting key and value at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
 
                 nodeVal.set(index,val);
 
@@ -144,7 +159,7 @@ public class ChildNode extends TreeNode{
             else
             {
                 //if(constants.DEBUG_MODE_INSERT)
-                System.out.println("Inserting key and value at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
+                //System.out.println("Inserting key and value at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
                 keys.add(index,key);
                 nodeVal.add(index,val);
             }
@@ -152,7 +167,7 @@ public class ChildNode extends TreeNode{
             if(BPlusTree.root.treeOverflow())
             {
                 //if(constants.DEBUG_MODE_INSERT)
-                System.out.println("Overflow lead at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
+               // System.out.println("Overflow lead at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
 
                 //To handle overflow, you need to splt the node
                 TreeNode nextChild = splitNodeForMiddle();
@@ -175,8 +190,8 @@ public class ChildNode extends TreeNode{
     @Override
     public TreeNode splitNodeForMiddle() {
         //if(constants.DEBUG_MODE_INSERT)
-        System.out.println("Splitting Tree Node");
-
+//        System.out.println("Splitting Tree Node");
+//
         /*after creating a new leaf node, insert keys and values from first half and set the next to neighbour node*/
 
         ChildNode neighbour = new ChildNode();

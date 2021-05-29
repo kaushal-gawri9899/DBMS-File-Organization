@@ -23,6 +23,7 @@ public class NeighbourNode extends TreeNode{
         {
             if(!node.isMarked())
             {
+               // System.out.println("Here");
                 node.search(key);
                 marked=true;
             }
@@ -53,8 +54,8 @@ public class NeighbourNode extends TreeNode{
                         System.out.println("NeighbourNode ["+ i +"] key : "+j+" - "+ allNeighbours.get(i).keys.get(j));
                         keyNum=j;
                     }
-                System.out.println("NeighbourNode ["+ i +"] number of keys : " + keyNum);
-                i++;
+//                System.out.println("NeighbourNode ["+ i +"] number of keys : " + keyNum);
+//                i++;
             }
         }
 
@@ -77,15 +78,25 @@ public class NeighbourNode extends TreeNode{
     void searchForGivenRange(String key1, String key2, int type) {
 
         int i=0;
-        while(i<allNeighbours.size())
+//        while(i<allNeighbours.size())
+//        {
+//            if(!allNeighbours.get(i).isMarked())
+//            {
+//                allNeighbours.get(i).searchForGivenRange(key1,key2,type);
+//                marked=true;
+//            }
+//            i++;
+//        }
+        for(TreeNode node : allNeighbours)
         {
-            if(!allNeighbours.get(i).isMarked())
+            if(!node.isMarked())
             {
-                allNeighbours.get(i).searchForGivenRange(key1,key2,type);
+                // System.out.println("Here");
+                node.searchForGivenRange(key1,key2,type);
                 marked=true;
             }
-            i++;
         }
+
     }
 
     @Override
@@ -101,7 +112,7 @@ public class NeighbourNode extends TreeNode{
 
         //Add a check for user output
         //if(constants.DEBUG_MODE_INSERT)
-        System.out.println("Inserting key and value : "+ " | " + key + " | " + val + "|");
+       // System.out.println("Inserting key and value : "+ " | " + key + " | " + val + "|");
 
         childNode.insertInTree(key,val);
 
@@ -181,7 +192,7 @@ public class NeighbourNode extends TreeNode{
             index = -value-1;
 
         //if(constants.DEBUG_MODE)
-        System.out.println("Key (" +key+")" + ", Size of Key" +"( "+ allNeighbours.get(index).sizeOfKey()+" )" + "Location: (" +value+") " + "New Index: " + "("+index+")" );
+        //System.out.println("Key (" +key+")" + ", Size of Key" +"( "+ allNeighbours.get(index).sizeOfKey()+" )" + "Location: (" +value+") " + "New Index: " + "("+index+")" );
 
         return allNeighbours.get(index);
     }
