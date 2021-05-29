@@ -1,10 +1,8 @@
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 public class ChildNode extends TreeNode{
 
@@ -45,7 +43,7 @@ public class ChildNode extends TreeNode{
             marked=true;
 
             //Change it to record size from dbimpl
-            byte[] currentRecord = new byte[100];
+            byte[] currentRecord = new byte[constants.TREE_SIZE];
 
             int i=0;
 
@@ -62,7 +60,7 @@ public class ChildNode extends TreeNode{
                     fOut.write(currentRecord);
                 }
                 catch(FileNotFoundException ex){
-                   System.out.println("B+ tree File Not Found");
+                   System.out.println("B+ tree File" + constants.TREE_FILE_NAME + "Not Found");
                 }
                 catch(Exception ex)
                 {
@@ -85,7 +83,7 @@ public class ChildNode extends TreeNode{
 
                     String toSearch="";
 
-                    if(type==constants.RANGE_SEARCH_DATE)
+                    if(type==constants.RANGE_SEARCH_STD)
                     {
                         toSearch = keyOfNode.substring(constants.DATE_OFFSET, constants.DATE_SIZE);
 

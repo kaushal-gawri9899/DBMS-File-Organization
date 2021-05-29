@@ -186,4 +186,38 @@ public class NeighbourNode extends TreeNode{
         return allNeighbours.get(index);
     }
 
+
+    public TreeNode getFirstNeighbour(String key)
+    {
+        int value = Collections.binarySearch(keys, key);
+        int index=0;
+
+        if(value>=0)
+            index=value+1;
+        else
+            index = -value-1;
+
+        if(index>0)
+            return allNeighbours.get(index-1);
+
+        return null;
+    }
+
+
+    public TreeNode getSecondNeighbour(String key)
+    {
+        int value = Collections.binarySearch(keys,key);
+        int index=0;
+
+        if(value>=0)
+            index = value+1;
+        else
+            index = -value-1;
+
+        if(index<sizeOfKey())
+            return allNeighbours.get(index+1);
+
+        return null;
+    }
+
 }

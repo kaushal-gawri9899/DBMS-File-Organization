@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.util.Date;
 
 public class dbquery {
 
+    private static BPlusTree bPlusTree = new BPlusTree();
     // Reads in a binary file of the argument-specified pagesize, prints out matching records
     public static void main(String[] args) throws IOException {
 
@@ -18,6 +20,8 @@ public class dbquery {
 
         String text = args[0];
         int pageSize = Integer.parseInt(args[constants.DBQUERY_PAGE_SIZE_ARG]);
+
+
 
         String datafile = "heap." + pageSize;
         long startTime = 0;
@@ -125,5 +129,86 @@ public class dbquery {
 
         long timeInMilliseconds = (finishTime - startTime)/constants.MILLISECONDS_PER_SECOND;
         System.out.println("Time taken: " + timeInMilliseconds + " ms");
+
+
+        String isBplus = args[2];
+
+        if(isBplus.contains("-b"))
+        {
+                iterateAndReadBplusTree();
+
+                long queryStartTime = System.currentTimeMillis();
+
+                System.out.println("Searching B+ Tree [" + args[0] + "]: ");
+
+                boolean isRange =false;
+                String key1 ="";
+                String key2 ="";
+                String key = args[0];
+
+                if(key.contains("--"))
+                {
+                    String[] val = key.split("--");
+                    key1=val[0];
+                    key2=val[1];
+
+                    isRange=true;
+                }
+                else
+                    key1=key;
+
+                if(isRange)
+                {
+                        bPlusTree.searchForGivenRange(key1, key2, constants.RANGE_SEARCH_STD);
+                }
+                else
+                {
+                    bPlusTree.search(key);
+                }
+
+                long queryEndTime = System.currentTimeMillis();
+                System.out.println("B+ Tree Search Time" + (queryEndTime-queryStartTime)+ " ms");
+        }
+    }
+
+
+    public static void iterateAndReadBplusTree()
+    {
+        File treeFName = new File(constants.TREE_FILE_NAME);
+
+        int count =0;
+
+        try(FileInputStream fIn = new FileInputStream(treeFName))
+        {
+            boolean isNextRecord = true;
+
+            while(isNextRecord)
+            {
+                byte[] buf = new byte[constants.TREE_SIZE];
+                int j = fIn.read(buf,0,constants.TREE_SIZE);
+
+                String record = new String(buf);
+                if(j!=-1)
+                {
+                    count++;
+                    String key = record.split("[,]")[0];
+                    String val = record.split("[,]")[1];
+
+                    bPlusTree.insertIntoTree(key,val);
+                }
+                else
+                    isNextRecord=false;
+            }
+            fIn.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File"+treeFName+ " not found");
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

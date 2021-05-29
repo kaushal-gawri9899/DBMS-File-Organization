@@ -1,6 +1,7 @@
 public class constants{
     public static final int DBLOAD_ARG_COUNT = 3;
-    public static final int DBQUERY_ARG_COUNT = 2;
+   // public static final int DBQUERY_ARG_COUNT = 2;
+   public static final int DBQUERY_ARG_COUNT = 3;
 
     public static final int DBLOAD_PAGE_SIZE_ARG = 1;
     public static final int DBQUERY_PAGE_SIZE_ARG = 1;
@@ -107,9 +108,12 @@ public class constants{
 
     //B PLus Tree
 
-    public static final int RANGE_SEARCH_DATE = 1;
+    public static final int RANGE_SEARCH_STD = 1;
     public static final int RANGE_SEARCH_ID = 2;
     public static final boolean SHOW_VALUE=false;
+    public static final String TREE_FILE_NAME = "bPlusTree.dat";
+    public  static final boolean SAVE_TREE_ON_DISK = true;
+    public static final int TREE_SIZE = COUNTS_OFFSET+COUNTS_SIZE;
 
 
 }

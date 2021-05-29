@@ -28,6 +28,9 @@ public class dbload {
      *
      * Outputs a binary file called heap.pagesize
      */
+
+    private static BPlusTree bPlusTree = new BPlusTree();
+
     public static void main(String[] args) throws IOException {
 
         // check for correct number of arguments
@@ -104,12 +107,26 @@ public class dbload {
                 numRecordsLoaded++;
                 // check if a new page is needed
                 if (numRecordsLoaded % numRecordsPerPage == 0) {
+                    //This forces data to be written to byteOutPutStream
                     dataOutput.flush();
                     // Get the byte array of loaded records, copy to an empty page and writeout
                     byte[] page = new byte[pageSize];
+                    //A record is created through this byteOutPutStream
+                    //Maybe use this byte array to create a new recordString and then write to bplusTree
                     byte[] records = byteOutputStream.toByteArray();
                     int numberBytesToCopy = byteOutputStream.size();
                     System.arraycopy(records, 0, page, 0, numberBytesToCopy);
+
+                    //Try out
+                    String recordString = new String(records);
+                    String key_NAME = recordString.substring(0, constants.STD_NAME_SIZE);
+                    String value_NAME = recordString.substring(constants.STD_NAME_SIZE, constants.COUNTS_OFFSET+constants.COUNTS_SIZE);
+//
+
+                    bPlusTree.insertIntoTree(key_NAME, value_NAME);
+
+
+
                     writeOut(outputStream, page);
                     numberOfPagesUsed++;
                     byteOutputStream.reset();
@@ -123,6 +140,14 @@ public class dbload {
                 byte[] records = byteOutputStream.toByteArray();
                 int numberBytesToCopy = byteOutputStream.size();
                 System.arraycopy(records, 0, page, 0, numberBytesToCopy);
+                //Try OUT
+                String recordString = new String(records);
+                String key_NAME = recordString.substring(0, constants.STD_NAME_SIZE);
+                String value_NAME = recordString.substring(constants.STD_NAME_SIZE, constants.COUNTS_OFFSET+constants.COUNTS_SIZE);
+//
+
+                bPlusTree.insertIntoTree(key_NAME, value_NAME);
+
                 writeOut(outputStream, page);
                 numberOfPagesUsed++;
                 byteOutputStream.reset();
@@ -157,6 +182,12 @@ public class dbload {
             }
         }
 
+        if(constants.SAVE_TREE_ON_DISK)
+        {
+            saveTreeOnDisk();
+        }
+
+
         // print out stats if all operations succeeded
         if (exceptionOccurred == false) {
 
@@ -164,6 +195,33 @@ public class dbload {
             System.out.println("The number of pages used: " + numberOfPagesUsed);
             long timeInMilliseconds = (finishTime - startTime)/constants.MILLISECONDS_PER_SECOND;
             System.out.println("Time taken: " + timeInMilliseconds + " ms");
+
+
+            long queryStartTime = System.currentTimeMillis();
+            System.out.println("Searching for [" + "1" + "]: ");
+            bPlusTree.search("1");
+
+            long queryEndTime = System.currentTimeMillis();
+            System.out.println("Search Time: " + (queryEndTime-queryStartTime) + "ms");
+        }
+    }
+
+    public static void saveTreeOnDisk()
+    {
+        FileOutputStream fOutTree = null;
+        try {
+            fOutTree = new FileOutputStream(constants.TREE_FILE_NAME);
+            bPlusTree.iterateTree(fOutTree);
+            fOutTree.close();
+
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File: " + constants.TREE_FILE_NAME + "not found");
+        }
+        catch (Exception ep)
+        {
+            ep.printStackTrace();
         }
     }
 
