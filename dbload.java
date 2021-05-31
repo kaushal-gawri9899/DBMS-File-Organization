@@ -121,8 +121,11 @@ public class dbload {
                     String recordString = new String(records);
                     String key_NAME = recordString.substring(0, constants.STD_NAME_SIZE);
                     String value_NAME = recordString.substring(constants.STD_NAME_SIZE, constants.COUNTS_OFFSET+constants.COUNTS_SIZE);
+                    //String value_NAME = recordString.substring(0, constants.TOTAL_SIZE);
 //
-
+                   // String value_NAME = recordString;
+                    System.out.println("Key is "+ key_NAME);
+                    System.out.println("Val is "+ value_NAME);
                     bPlusTree.insertIntoTree(key_NAME, value_NAME);
 
 
@@ -144,8 +147,11 @@ public class dbload {
                 String recordString = new String(records);
                 String key_NAME = recordString.substring(0, constants.STD_NAME_SIZE);
                 String value_NAME = recordString.substring(constants.STD_NAME_SIZE, constants.COUNTS_OFFSET+constants.COUNTS_SIZE);
-//
+                //String value_NAME = recordString.substring(0, constants.TOTAL_SIZE);
 
+                //String value_NAME = recordString;
+                System.out.println("Key is "+ key_NAME);
+                System.out.println("Val is "+ value_NAME);
                 bPlusTree.insertIntoTree(key_NAME, value_NAME);
 
                 writeOut(outputStream, page);
@@ -197,12 +203,12 @@ public class dbload {
             System.out.println("Time taken: " + timeInMilliseconds + " ms");
 
 
-            long queryStartTime = System.currentTimeMillis();
-            System.out.println("Searching for [" + "1" + "]: ");
-            bPlusTree.search("1");
-
-            long queryEndTime = System.currentTimeMillis();
-            System.out.println("Search Time: " + (queryEndTime-queryStartTime) + "ms");
+//            long queryStartTime = System.currentTimeMillis();
+//            System.out.println("Searching for [" + "1" + "]: ");
+//            bPlusTree.search("1");
+//
+//            long queryEndTime = System.currentTimeMillis();
+//            System.out.println("Search Time: " + (queryEndTime-queryStartTime) + "ms");
         }
     }
 

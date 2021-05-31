@@ -100,7 +100,8 @@ public class ChildNode extends TreeNode{
                     if(type==constants.RANGE_SEARCH_STD)
                     {
                         //toSearch = keyOfNode.substring(constants.DATE_OFFSET, constants.DATE_SIZE);
-						toSearch = valOfNode.substring(0, constants.COUNTS_OFFSET-20);
+						//toSearch = valOfNode.substring(0, constants.COUNTS_OFFSET-20);
+                        toSearch = valOfNode;
 						//System.out.println(toSearch);
                     }
 
@@ -113,16 +114,18 @@ public class ChildNode extends TreeNode{
 					//System.out.println("HERE");
                     if(toSearch.compareTo(key1)>=0 && toSearch.compareTo(key2)<=0)
                     {
-                        System.out.println("Result For Given Range"+"["+key1+"] : " + "----" + "["+key2+"] :-  " + keyOfNode + " : " + valOfNode );
+                        System.out.println("Result For Given Range"+"["+key1+"]" + "----" + "["+key2+"] :-  " + keyOfNode + " : " + valOfNode );
                     }
 
-                    //Also check if key entered is a substring of the laststring
+                    //Also check if key entered is a substring of the last-string
                     //Above if won't consider that
 
                     if(toSearch.contains(key2))
                     {
-                        System.out.println("Result For Given Range"+"["+key1+"] : " + "----" + "["+key2+"] :-  " + keyOfNode + " : " + valOfNode );
+                        System.out.println("Result For Given Range"+"["+key1+"] " + "----" + "["+key2+"] :-  " + keyOfNode + " : " + valOfNode );
                     }
+
+                    i++;
                 }
 
     }
