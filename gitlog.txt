@@ -1,0 +1,119 @@
+commit 006df81009ed41436f4acca334e6c361c12fdc67
+Author: kaushal-gawri9899 <34962753+kaushal-gawri9899@users.noreply.github.com>
+Date:   Wed Jun 2 05:02:53 2021 +0530
+
+    Update README.md
+
+commit e0260872e3dd1602fa781ba9edc3e0d7bd572481
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Wed Jun 2 05:00:31 2021 +0530
+
+    Updates README.md for all the tasks
+
+commit bc54c9d9236ef1fb7ee1c0c8f057a6c7c9f1b7ee
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Wed Jun 2 04:41:50 2021 +0530
+
+    Merging All The files for submission
+
+commit cfa63f42b06a8bb9932b2ce7b8132619126bf1da
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Wed Jun 2 04:31:54 2021 +0530
+
+    Updating imports for Derby
+
+commit 9a8de64126bcf10a7cff9fdae9abfa3186524a3f
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Wed Jun 2 04:11:29 2021 +0530
+
+    Merged Files For Submission
+
+commit b40b9bf24f3f3c23d2fcdf51f647da8f82c3cc1f
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Wed Jun 2 03:02:15 2021 +0530
+
+    Adding Final Report
+
+commit 68e6c193833dfbcfc401a04c20fff700d6db6068
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Wed Jun 2 01:33:24 2021 +0530
+
+    Adding Draft Report
+
+commit 9d5695596010739f138ddf21309b710a561407d3
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Tue Jun 1 17:56:06 2021 +0530
+
+    Added Time Statistics and checks for console debugging
+
+commit 7c4d62e66fefd506a997042e7419e07b47282b80
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Tue Jun 1 16:18:45 2021 +0530
+
+    Adding json file for mongoDb
+
+commit 2621f672337ec5e603c4dcc13dbfe9fa85e9ef5c
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Tue Jun 1 16:16:27 2021 +0530
+
+    Reformatted Console Statements for queries
+
+commit bcf74466a5761aa847a7ef4aaf212389b373caa9
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Tue Jun 1 12:30:09 2021 +0530
+
+    Adding Scripts for part1 and part 2
+
+commit cbff2cf607d6cb425c30a357b71c98c98347bd9d
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Mon May 31 20:20:24 2021 +0530
+
+    Added code to create tables and index in Derby
+
+commit 8086a0eadba23a759027baff36444663dbbb0235
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Mon May 31 20:18:21 2021 +0530
+
+    Adding script to run queries for task 1
+
+commit c11ab2d88d4f48f20459b81e897e4ec5853a860c
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Mon May 31 20:16:03 2021 +0530
+
+    Adding queries for Derby task 1 based on index
+
+commit 031c6159c39c2a23de06a8b0e575f86625484c64
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Mon May 31 20:15:18 2021 +0530
+
+    Debugged issues with range search and used String.compareTo() to fix it
+
+commit 507430920943f37e77c1e9de7aa5715b5bee8018
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Sat May 29 22:32:38 2021 +0530
+
+    Debugged issue for search in B+ tree
+
+commit 534db0540c65755ed1ca98e6a0c3aae7c95db134
+Author: kaushal-gawri9899 <gawrikaushal9899@gmail.com>
+Date:   Sat May 29 20:32:30 2021 +0530
+
+    Updated dbquery and dbload to read through B+ Tree
+
+commit c5198f0babf67f6063a1d6e0bb930d4533812590
+Author: kaushal gawri <gawrikaushal9899@gmail.com>
+Date:   Mon May 24 22:13:48 2021 +0530
+
+    Implementing neighbour nodes in BplusTree
+
+commit 3b5f7e17aacd4d50cae23d0bbb25995e9f19118e
+Author: kaushal gawri <gawrikaushal9899@gmail.com>
+Date:   Mon May 24 20:18:58 2021 +0530
+
+    Implementing Base Node and Neighbour Node for BPlus Tree
+
+commit 737554cf74faa11e018a491f1d02c27899bfd756
+Author: kaushal-gawri9899 <34962753+kaushal-gawri9899@users.noreply.github.com>
+Date:   Mon May 24 20:13:16 2021 +0530
+
+    Initial commit
