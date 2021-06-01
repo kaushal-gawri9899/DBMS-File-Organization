@@ -124,8 +124,8 @@ public class dbload {
                     //String value_NAME = recordString.substring(0, constants.TOTAL_SIZE);
 //
                    // String value_NAME = recordString;
-                    System.out.println("Key is "+ key_NAME);
-                    System.out.println("Val is "+ value_NAME);
+//                    System.out.println("Key is "+ key_NAME);
+//                    System.out.println("Val is "+ value_NAME);
                     bPlusTree.insertIntoTree(key_NAME, value_NAME);
 
 
@@ -150,8 +150,8 @@ public class dbload {
                 //String value_NAME = recordString.substring(0, constants.TOTAL_SIZE);
 
                 //String value_NAME = recordString;
-                System.out.println("Key is "+ key_NAME);
-                System.out.println("Val is "+ value_NAME);
+//                System.out.println("Key is "+ key_NAME);
+//                System.out.println("Val is "+ value_NAME);
                 bPlusTree.insertIntoTree(key_NAME, value_NAME);
 
                 writeOut(outputStream, page);

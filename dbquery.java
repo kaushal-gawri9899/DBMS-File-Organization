@@ -107,7 +107,7 @@ public class dbquery {
                                 + "," + new String(dayBytes).trim() + "," + ByteBuffer.wrap(timeBytes).getInt()
                                 + "," + ByteBuffer.wrap(sensorIdBytes).getInt() + "," +
                                 new String(sensorNameBytes).trim() + "," + ByteBuffer.wrap(countsBytes).getInt();
-                        System.out.println(record);
+                        //System.out.println(record);
                     }
                 }
             }
@@ -128,7 +128,7 @@ public class dbquery {
         }
 
         long timeInMilliseconds = (finishTime - startTime)/constants.MILLISECONDS_PER_SECOND;
-        System.out.println("Time taken: " + timeInMilliseconds + " ms");
+       // System.out.println("Time taken: " + timeInMilliseconds + " ms");
 
 
         String isBplus = args[2];

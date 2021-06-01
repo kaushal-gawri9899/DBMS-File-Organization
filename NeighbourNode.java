@@ -41,9 +41,6 @@ public class NeighbourNode extends TreeNode{
 
     @Override
     void iterateTree(FileOutputStream fOut) {
-
-
-
         if(constants.SHOW_VALUE) {
             int keyNum=0;
             int i=0;
@@ -55,7 +52,7 @@ public class NeighbourNode extends TreeNode{
                         keyNum=j;
                     }
 //                System.out.println("NeighbourNode ["+ i +"] number of keys : " + keyNum);
-//                i++;
+                i++;
             }
         }
 
@@ -112,7 +109,7 @@ public class NeighbourNode extends TreeNode{
 
         //Add a check for user output
         //if(constants.DEBUG_MODE_INSERT)
-       // System.out.println("Inserting key and value : "+ " | " + key + " | " + val + "|");
+       // System.out.println("Inserting key: "+ " | " + key + " | ");
 
         childNode.insertInTree(key,val);
 

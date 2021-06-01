@@ -39,10 +39,6 @@ public class ChildNode extends TreeNode{
 			{
 				System.out.println("Value Found in B+ Tree"+"["+key+"] : "+ keyOfNode+" : "+ valOfNode);
 			}
-			if(valOfNode.matches(key))
-			{
-				System.out.println("FOUND");
-			}
             i++;
         }
     }
@@ -154,7 +150,7 @@ public class ChildNode extends TreeNode{
                 //Add a check for user output
                 //if(constants.DEBUG_MODE_INSERT)
                 //System.out.println("Setting key and value at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
-
+                System.out.println("Setting Key and Value at node: " + nodeVal.size() + " | " + key + " | ");
                 nodeVal.set(index,val);
 
             }
@@ -163,6 +159,7 @@ public class ChildNode extends TreeNode{
             {
                 //if(constants.DEBUG_MODE_INSERT)
                 //System.out.println("Inserting key and value at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
+                System.out.println("Inserting key at node: "+ nodeVal.size()+ " | " + key + " | ");
                 keys.add(index,key);
                 nodeVal.add(index,val);
             }
@@ -171,7 +168,7 @@ public class ChildNode extends TreeNode{
             {
                 //if(constants.DEBUG_MODE_INSERT)
                // System.out.println("Overflow lead at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
-
+                System.out.println("Overflow for node: "+ nodeVal.size() + " with index " + "| " + key + " |");
                 //To handle overflow, you need to splt the node
                 TreeNode nextChild = splitNodeForMiddle();
                 NeighbourNode currRoot = new NeighbourNode();
@@ -193,7 +190,7 @@ public class ChildNode extends TreeNode{
     @Override
     public TreeNode splitNodeForMiddle() {
         //if(constants.DEBUG_MODE_INSERT)
-//        System.out.println("Splitting Tree Node");
+        System.out.println("Splitting current tree node");
 //
         /*after creating a new leaf node, insert keys and values from first half and set the next to neighbour node*/
 
@@ -214,8 +211,6 @@ public class ChildNode extends TreeNode{
         nextNode=neighbour;
 
         return neighbour;
-
-
 
     }
 

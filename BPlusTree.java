@@ -7,7 +7,7 @@ public class BPlusTree {
 
     public BPlusTree()
     {
-        numOfKeys = 4;
+        numOfKeys = 1024;
         root = new ChildNode();
     }
 
