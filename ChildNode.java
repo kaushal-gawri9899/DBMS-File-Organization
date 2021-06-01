@@ -12,7 +12,6 @@ public class ChildNode extends TreeNode{
     boolean marked  =false;
     public ChildNode()
     {
-//        BPlusTree.keys =
         keys = new ArrayList<String>();
         nodeVal = new ArrayList<String>();
     }
@@ -29,8 +28,7 @@ public class ChildNode extends TreeNode{
 
             String keyOfNode = keys.get(i);
             String valOfNode = nodeVal.get(i);
-			//System.out.println(key);
-			//System.out.println(valOfNode);
+
             if(keyOfNode.toUpperCase().contains(key.toUpperCase()))
             {
                 System.out.println("Value Found in B+ Tree"+"["+key+"] : "+ keyOfNode+" : "+ valOfNode);
@@ -45,9 +43,10 @@ public class ChildNode extends TreeNode{
 
     @Override
     public void iterateTree(FileOutputStream fOut) {
+
             marked=true;
 
-            //Change it to record size from dbimpl
+            //Change it to tree size from constants clas
             byte[] currentRecord = new byte[constants.TREE_SIZE];
 
             int i=0;
@@ -88,26 +87,16 @@ public class ChildNode extends TreeNode{
 
                     String toSearch="";
 
-
-                   //System.out.println(valOfNode);
-//                    System.out.println(keyOfNode);
-//                    System.out.println("Print");
-
                     if(type==constants.RANGE_SEARCH_STD)
                     {
-                        //toSearch = keyOfNode.substring(constants.DATE_OFFSET, constants.DATE_SIZE);
-						//toSearch = valOfNode.substring(0, constants.COUNTS_OFFSET-20);
                         toSearch = valOfNode;
-						//System.out.println(toSearch);
                     }
 
                     else if(type==constants.RANGE_SEARCH_ID)
                     {
-                       // toSearch = keyOfNode.substring(constants.ID_OFFSET, constants.ID_SIZE);
 						toSearch = valOfNode.substring(constants.ID_OFFSET, constants.ID_SIZE);
                     }
 
-					//System.out.println("HERE");
                     if(toSearch.compareTo(key1)>=0 && toSearch.compareTo(key2)<=0)
                     {
                         System.out.println("Result For Given Range"+"["+key1+"]" + "----" + "["+key2+"] :-  " + keyOfNode + " : " + valOfNode );
@@ -147,28 +136,26 @@ public class ChildNode extends TreeNode{
             if(value>=0)
             {
                 //Already there
-                //Add a check for user output
-                //if(constants.DEBUG_MODE_INSERT)
-                //System.out.println("Setting key and value at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
-                System.out.println("Setting Key and Value at node: " + nodeVal.size() + " | " + key + " | ");
-                nodeVal.set(index,val);
+               if (BPlusTree.showStatistics)
+                     System.out.println("Setting Key and Value at node: " + nodeVal.size() + " | " + key + " | ");
+
+               nodeVal.set(index,val);
 
             }
 
             else
             {
-                //if(constants.DEBUG_MODE_INSERT)
-                //System.out.println("Inserting key and value at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
-                System.out.println("Inserting key at node: "+ nodeVal.size()+ " | " + key + " | ");
+                if (BPlusTree.showStatistics)
+                    System.out.println("Inserting key and value at node: "+ nodeVal.size()+ " | " + key + " | ");
                 keys.add(index,key);
                 nodeVal.add(index,val);
             }
 
             if(BPlusTree.root.treeOverflow())
             {
-                //if(constants.DEBUG_MODE_INSERT)
-               // System.out.println("Overflow lead at node: "+nodeVal.size()+ " | " + key + " | " + value + "|");
-                System.out.println("Overflow for node: "+ nodeVal.size() + " with index " + "| " + key + " |");
+
+                if(BPlusTree.showStatistics)
+                    System.out.println("Overflow for node: "+ nodeVal.size() + " with index " + "| " + key + " |");
                 //To handle overflow, you need to splt the node
                 TreeNode nextChild = splitNodeForMiddle();
                 NeighbourNode currRoot = new NeighbourNode();
@@ -189,9 +176,10 @@ public class ChildNode extends TreeNode{
 
     @Override
     public TreeNode splitNodeForMiddle() {
-        //if(constants.DEBUG_MODE_INSERT)
-        System.out.println("Splitting current tree node");
-//
+
+		if(BPlusTree.showStatistics)
+            System.out.println("Splitting current tree node");
+
         /*after creating a new leaf node, insert keys and values from first half and set the next to neighbour node*/
 
         ChildNode neighbour = new ChildNode();

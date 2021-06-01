@@ -106,11 +106,12 @@ public class constants{
                                             SENSORNAME_SIZE;
 
 
-    //B PLus Tree
+    /*BPlusTree*/
 
     public static final int RANGE_SEARCH_STD = 1;
     public static final int RANGE_SEARCH_ID = 2;
     public static final boolean SHOW_VALUE=false;
+
     public static final String TREE_FILE_NAME = "bPlusTree.dat";
     public  static final boolean SAVE_TREE_ON_DISK = true;
     public static final int TREE_SIZE = COUNTS_OFFSET+COUNTS_SIZE;

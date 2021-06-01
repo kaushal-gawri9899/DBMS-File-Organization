@@ -28,15 +28,6 @@ public class NeighbourNode extends TreeNode{
                 marked=true;
             }
         }
-//
-//        for(int i=0; i<allNeighbours.size(); i++)
-//        {
-//            if(!allNeighbours.get(i).isMarked())
-//            {
-//                allNeighbours.get(i).search(key);
-//                marked=true;
-//            }
-//        }
     }
 
     @Override
@@ -51,7 +42,6 @@ public class NeighbourNode extends TreeNode{
                         System.out.println("NeighbourNode ["+ i +"] key : "+j+" - "+ allNeighbours.get(i).keys.get(j));
                         keyNum=j;
                     }
-//                System.out.println("NeighbourNode ["+ i +"] number of keys : " + keyNum);
                 i++;
             }
         }
@@ -74,21 +64,11 @@ public class NeighbourNode extends TreeNode{
     @Override
     void searchForGivenRange(String key1, String key2, int type) {
 
-        int i=0;
-//        while(i<allNeighbours.size())
-//        {
-//            if(!allNeighbours.get(i).isMarked())
-//            {
-//                allNeighbours.get(i).searchForGivenRange(key1,key2,type);
-//                marked=true;
-//            }
-//            i++;
-//        }
         for(TreeNode node : allNeighbours)
         {
             if(!node.isMarked())
             {
-                // System.out.println("Here");
+
                 node.searchForGivenRange(key1,key2,type);
                 marked=true;
             }
@@ -106,10 +86,8 @@ public class NeighbourNode extends TreeNode{
 
         TreeNode childNode = getChildNode(key);
 
-
-        //Add a check for user output
-        //if(constants.DEBUG_MODE_INSERT)
-       // System.out.println("Inserting key: "+ " | " + key + " | ");
+        if (BPlusTree.showStatistics)
+             System.out.println("Inserting key: "+ " | " + key + " | ");
 
         childNode.insertInTree(key,val);
 
@@ -187,9 +165,6 @@ public class NeighbourNode extends TreeNode{
             index=value+1;
         else
             index = -value-1;
-
-        //if(constants.DEBUG_MODE)
-        //System.out.println("Key (" +key+")" + ", Size of Key" +"( "+ allNeighbours.get(index).sizeOfKey()+" )" + "Location: (" +value+") " + "New Index: " + "("+index+")" );
 
         return allNeighbours.get(index);
     }

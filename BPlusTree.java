@@ -4,11 +4,17 @@ public class BPlusTree {
 
     public static int numOfKeys;
     public static TreeNode root;
-
+    public static boolean showStatistics;
     public BPlusTree()
     {
         numOfKeys = 1024;
         root = new ChildNode();
+        showStatistics = false;
+    }
+
+    public void setStatistics(boolean value)
+    {
+        this.showStatistics = false;
     }
 
     public void insertIntoTree(String key, String value)

@@ -128,13 +128,13 @@ public class dbquery {
         }
 
         long timeInMilliseconds = (finishTime - startTime)/constants.MILLISECONDS_PER_SECOND;
-       // System.out.println("Time taken: " + timeInMilliseconds + " ms");
 
 
         String isBplus = args[2];
 
         if(isBplus.contains("-b"))
         {
+
                 iterateAndReadBplusTree();
 
                 long queryStartTime = System.currentTimeMillis();
@@ -194,6 +194,7 @@ public class dbquery {
                     String key = record.split("[,]")[0];
                     String val = record.split("[,]")[1];
 
+                    BPlusTree.showStatistics=false;
                     bPlusTree.insertIntoTree(key,val);
                 }
                 else

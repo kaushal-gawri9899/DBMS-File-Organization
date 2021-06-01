@@ -31,6 +31,8 @@ public class dbload {
 
     private static BPlusTree bPlusTree = new BPlusTree();
 
+
+
     public static void main(String[] args) throws IOException {
 
         // check for correct number of arguments
@@ -50,6 +52,7 @@ public class dbload {
         final int numBytesFixedLengthRecord = constants.TOTAL_SIZE;
         int numRecordsPerPage = pageSize/numBytesFixedLengthRecord;
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+
 
         BufferedReader reader = null;
         FileOutputStream outputStream = null;
@@ -121,12 +124,11 @@ public class dbload {
                     String recordString = new String(records);
                     String key_NAME = recordString.substring(0, constants.STD_NAME_SIZE);
                     String value_NAME = recordString.substring(constants.STD_NAME_SIZE, constants.COUNTS_OFFSET+constants.COUNTS_SIZE);
-                    //String value_NAME = recordString.substring(0, constants.TOTAL_SIZE);
-//
-                   // String value_NAME = recordString;
-//                    System.out.println("Key is "+ key_NAME);
-//                    System.out.println("Val is "+ value_NAME);
+
+                    BPlusTree.showStatistics=true;
+
                     bPlusTree.insertIntoTree(key_NAME, value_NAME);
+
 
 
 
@@ -147,12 +149,12 @@ public class dbload {
                 String recordString = new String(records);
                 String key_NAME = recordString.substring(0, constants.STD_NAME_SIZE);
                 String value_NAME = recordString.substring(constants.STD_NAME_SIZE, constants.COUNTS_OFFSET+constants.COUNTS_SIZE);
-                //String value_NAME = recordString.substring(0, constants.TOTAL_SIZE);
 
-                //String value_NAME = recordString;
-//                System.out.println("Key is "+ key_NAME);
-//                System.out.println("Val is "+ value_NAME);
+                BPlusTree.showStatistics=true;
+
                 bPlusTree.insertIntoTree(key_NAME, value_NAME);
+
+
 
                 writeOut(outputStream, page);
                 numberOfPagesUsed++;
@@ -197,18 +199,14 @@ public class dbload {
         // print out stats if all operations succeeded
         if (exceptionOccurred == false) {
 
-            System.out.println("The number of records loaded: " + numRecordsLoaded);
-            System.out.println("The number of pages used: " + numberOfPagesUsed);
+            System.out.println("The number of records loaded in heap: " + numRecordsLoaded);
+            System.out.println("The number of pages used in heap: " + numberOfPagesUsed);
             long timeInMilliseconds = (finishTime - startTime)/constants.MILLISECONDS_PER_SECOND;
-            System.out.println("Time taken: " + timeInMilliseconds + " ms");
+            System.out.println("Time taken to load in heapfile and B+ Tree: " + timeInMilliseconds + " ms");
 
 
-//            long queryStartTime = System.currentTimeMillis();
-//            System.out.println("Searching for [" + "1" + "]: ");
-//            bPlusTree.search("1");
-//
-//            long queryEndTime = System.currentTimeMillis();
-//            System.out.println("Search Time: " + (queryEndTime-queryStartTime) + "ms");
+            //22561 was recorded as average time to write in heap before code to create a tree was added
+            System.out.println("Time taken to load in B+ Tree: " + (timeInMilliseconds-22561) + " ms");
         }
     }
 
@@ -217,6 +215,7 @@ public class dbload {
         FileOutputStream fOutTree = null;
         try {
             fOutTree = new FileOutputStream(constants.TREE_FILE_NAME);
+            bPlusTree.setStatistics(true);
             bPlusTree.iterateTree(fOutTree);
             fOutTree.close();
 
