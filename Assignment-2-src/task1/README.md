@@ -10,4 +10,4 @@ bash ./part1.sh
 
 
 #### Run the shell script for running the four queries using :
-bash ./queryScript
+bash ./queryScript.sh
