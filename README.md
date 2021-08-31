@@ -1,4 +1,4 @@
-# Database-Systems-Assignment-2
+# DBMS File Organization and Querying SQL/NoSQL databases
 
 ## Please refer to Readme Of each task for compiling and running the code / scripts.
 
